@@ -20,5 +20,5 @@ docker build -t "$IMAGE_NAME:$UNIQUE_TAG" .
 if [ $? -eq 0 ]; then
   echo "Image built successfully with tag: $IMAGE_NAME:$UNIQUE_TAG"
 else
-  echo "Failed to build the image"
+  echo "Failed to build the images"
 fi
