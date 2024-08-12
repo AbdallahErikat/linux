@@ -11,7 +11,7 @@ send_email() {
 
 while true; do 
     if ! systemctl is-active --quiet mysql; then
-        echo "The system is not working"
+        echo "The system is not workings"
         send_email
     fi
     sleep 30
