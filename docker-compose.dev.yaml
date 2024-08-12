@@ -1,0 +1,52 @@
+version: '3.8'
+services:
+  mysql-database:
+    image: mysql
+    restart: always
+    container_name: 'container_db'
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234          # استبدلها بكلمة المرور التي ترغب بها
+      MYSQL_DATABASE: wp_db              # اسم قاعدة البيانات التي ترغب بإنشائها
+      MYSQL_USER: wp_user                # اسم المستخدم
+      MYSQL_PASSWORD: 1234               # كلمة مرور المستخدم
+    ports:
+      - "3306:3306"  
+    volumes:
+      - mysql_data:/var/lib/mysql
+      #mysql -u wp_user -p   الدخول على db
+      #SHOW DATABASES;
+      #USE wp_db;   اسم الداتا الي في البيئة
+      #SHOW TABLES;
+      # Dealing DML AND DDL
+
+  wordpress:
+    depends_on: 
+      - mysql-database
+    image: wordpress:latest  
+    restart: always
+    container_name: 'container_wp'
+    ports:
+      - "8080:80"
+    environment:
+      WORDPRESS_DB_HOST: mysql-database:3306
+      WORDPRESS_DB_USER: wp_user
+      WORDPRESS_DB_PASSWORD: 1234
+      WORDPRESS_DB_NAME: wp_db  
+    volumes:
+      - wordpress_data:/var/www/html
+      #pass    2WW6JzuXcSUPQZiLtN
+  phpmyadmin:
+    image: phpmyadmin
+    depends_on:
+      - mysql-database
+    restart: always
+    container_name: 'container_phpmyadmin'
+    ports:
+      - "8081:80"
+    environment:
+     PMA_HOST: mysql-database
+     MYSQL_PASSWORD : 1234
+      
+volumes:
+  mysql_data:
+  wordpress_data:
