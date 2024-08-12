@@ -21,8 +21,12 @@ if [ $? -eq 0 ]; then
   echo "Image built successfully with tag: $IMAGE_NAME:$UNIQUE_TAG"
 else
 <<<<<<< HEAD
+<<<<<<< HEAD
   echo "Failed to build the images"
 =======
   echo "Failed to build the image"
 >>>>>>> b4d72b0 (add files)
+=======
+  echo "Failed to build the images"
+>>>>>>> 0f28c8f (edit tomcat)
 fi
