@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tomcat-deployment
+  labels:
+    app: webserver
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: webserver
+  # strategy:
+  #   type: Recreate  
+  template:      
+#  يُستخدم في Deployments و ReplicaSets و StatefulSets لتحديد قالب الـ Pods الذي يجب إنشاؤه. يحتوي على مواصفات الـ Pods.
+    metadata:
+      labels:
+        app: webserver
+    spec:
+      containers:
+      - name: tom-dep
+        image: abdallaherikat01/tomcat-test:jre11-temurin
+        ports:
+        - containerPort: 80
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
